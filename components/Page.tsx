@@ -72,8 +72,10 @@ export default function ContentDisplay({ page }: ContentDisplayProps) {
         {/* Map through blocks array to render each modular content block */}
         {page?.blocks?.map((item, index) => {
           const { block } = item; // Extract block data from item
+         
+          if(!block) return null; // Skip rendering if block data is missing
+          
           const isImageLeft = block.layout === "image_left"; // Determine layout direction
-
           return (
             <div
               key={block._metadata?.uid || `block-${index}`} // Use unique identifier as key for React
